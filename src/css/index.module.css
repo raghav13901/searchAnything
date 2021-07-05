@@ -4,9 +4,12 @@
   min-height: 100vh;
   padding: 3%;
 }
-h4{
+h4 a{
     color: #197cda;
     text-transform: capitalize;
+}
+h4 a:hover{
+  color: #05529b;
 }
 a{
     color: rgba(79, 155, 4, 0.781);

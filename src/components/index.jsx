@@ -89,8 +89,8 @@ function Home() {
     return data.map((item,index)=>{
       return (
         <div key={index}>
-          <h4>{item.title}</h4>
-          <a  href={item.url}>{item.url}</a>
+          <h4><a href={item.url}>{item.title}</a></h4>
+          <a href={item.url}>{item.url}</a>
           <h6>{item.snippet}</h6>
         </div>
       )
