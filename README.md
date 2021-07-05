@@ -13,6 +13,10 @@ Application which uses Serpstack API (Limited to  100 Request Per Month) to sear
 - Do ```npm i``` in the root directory
 - Do ```npm start``` in root directory and application will be up and running.  
 
-##### 🖥 Techtack
-- Reactjs
-- Bootstrap
+##### API Used
+- Serpstack API (Limited to  100 Request Per Month)
+- Pixabay API (5,000 requests per hour)
+
+##### Additional Libraries Used
+- Axios
+
