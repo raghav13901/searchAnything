@@ -11,7 +11,7 @@ function Home() {
   const [country, setCountry] = useState('');
   const [prof, setProf] = useState('');
   const [gender, setGender] = useState('');
-  const [searchStatus, setStatus] = useState("Enter Query to Search");
+  const [searchStatus, setStatus] = useState("Enter Search Query");
   const [showState, setShowState] = useState("Text");
 
   useEffect(() => {
@@ -26,7 +26,23 @@ function Home() {
       alert('Enter Proper Search Query');
       return;
     }
-    document.getElementById('searchResult').innerText=`Search Result for ${query+" "+age+" "+country+" "+prof+" "+gender}`;
+    var resQ = query;
+    if(age !== '' || gender !== '' || prof !== ''|| country !== ''){
+      resQ+=",Tags : "
+      if(country !== '' ){
+        resQ+="Country : "+country+"  ";
+      }
+      if(age !== '' ){
+        resQ+="Age : "+age+"  ";
+      }
+      if(gender !== '' ){
+        resQ+="Gender : "+gender+"  ";
+      }
+      if(prof !== '' ){
+        resQ+="Profession : "+prof+"  ";
+      }
+    }
+    document.getElementById('searchResult').innerText=`Search Result for ${resQ}`;
     setText([]);
     setImg([]);
     setVid([]);
@@ -64,7 +80,11 @@ function Home() {
     const data = textSearch.organic_results;
     console.log(textSearch);
     if(data.length === 0){
-      return "No Data Found for this search Query"
+      return(
+        <p className={styles.noData}>
+          No Data Found
+        </p>
+      );
     }
     return data.map((item,index)=>{
       return (
@@ -79,7 +99,11 @@ function Home() {
   const imgData = ()=>{
     const data = imgSearch.hits;
     if(data.length === 0){
-      return "No Data Found for this search Query"
+      return(
+        <p className={styles.noData}>
+          No Data Found
+        </p>
+      );
     }
     return data.map((item,index)=>{
       return (
@@ -90,7 +114,11 @@ function Home() {
   const vidData = ()=>{
     const data = vidSearch.hits;
     if(data.length === 0){
-      return "No Data Found for this search Query"
+      return(
+        <p className={styles.noData}>
+          No Data Found
+        </p>
+      );
     }
     return data.map((item,index)=>{
       return (
@@ -113,9 +141,9 @@ function Home() {
       <h1 className="text-center p-3">Search Anything</h1>
       
       <div className="row">
-        <div className="col-lg-10 col-md-9">
+        <div className="col-lg-10 col-sm-9">
           <form className="row">
-            <div className="col-10">
+            <div className="col-10 col-md-11">
               <input
                 type="search"
                 className="form-control"
@@ -127,19 +155,19 @@ function Home() {
                 }}
               />
             </div>
-            <div className="col-2">
+            <div className="col-2 col-md-1">
               <button
                 type="submit"
                 className="btn btn-primary w-100"
                 onClick={search}
               >
-                Search
+                🔎
               </button>
             </div>
           </form>
         </div>
 
-        <div className={`col-md-3 col-lg-2 ${styles.filter}`}>
+        <div className={`col-sm-3 col-lg-2 ${styles.filter}`}>
           <div className={`dropdown ${styles.dropdown}`}>
             <button
               className="btn btn-primary dropdown-toggle"
@@ -148,7 +176,7 @@ function Home() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Filter
+            Filter
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li>
